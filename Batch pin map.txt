@@ -1,0 +1,29 @@
+Batch execution pins maping
+abcd efgh
+
+batch0
+a- |end of instructions|reset fetch counter|WE addr buss|WE PC|
+b- |WE data buss|WE prim regs|pair MUX prim regs|LD primary regs|
+c- |WE sec regs|pair MUX sec regs|LD sec regs|WE index regs|
+d- |LD index regs|reg sel prim regs|||
+e- |pair sel prim regs||pair sel sec regs||
+f- |reg sel sec regs|||Enable c in|
+g- |reg sel index regs||MUX A/Temp inc/dec|MUX adr buss|
+h- |MUX H(Flg)|LD Flags|LD ALU|WE A|
+
+batch1
+a- |res Carry|res N|res PV|res H|
+b- |res Z|res S|WE Carry|WE N|
+c- |WE PV|WE H|WE Z|WE S|
+d- |set Carry|set N|set PV|set H|
+e- |set Z|set S|test bits->||
+f- |test bits<=|MUX PV|||
+g- |MUX Carry|||MUX Z->|
+h- |MUX Z|<=|WE Temp|WE F|
+
+batch2
+a- |ALU OP||||
+b- |WR|RD A|MUX PC|RD|
+c- |Condition continue|MUX inc/dec main reg pair||IORQ|
+
+f- | | | |HALT|
